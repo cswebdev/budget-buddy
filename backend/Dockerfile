@@ -17,11 +17,12 @@ RUN useradd --create-home django-user
 WORKDIR /core
 
 # Copy dependency files from backend/
-COPY backend/requirements.txt /core/requirements.txt
-COPY backend/dev-requirements.txt /core/dev-requirements.txt
+COPY requirements.txt /core/requirements.txt
+COPY dev-requirements.txt /core/dev-requirements.txt
 
-# Copy the backend application code
-COPY backend/ /core/
+RUN pip install -r /core/requirements.txt
+
+COPY . /core/
 
 RUN mkdir -p /core/staticfiles
 
