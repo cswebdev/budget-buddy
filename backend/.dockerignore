@@ -1,0 +1,33 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment and dependency files
+venv/
+.env
+*.env
+*.db
+# *.sqlite3
+# db.sqlite3
+
+# Ignore compiled assets and static/media files
+staticfiles/
+media/
+
+# Ignore logs and temporary files
+*.log
+*.pot
+*.swp
+*.swo
+*.bak
+
+# Ignore Docker-specific files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore Git-related files
+.git
+.gitignore
