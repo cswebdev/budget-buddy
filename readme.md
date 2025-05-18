@@ -22,6 +22,6 @@ personal-budget-app/
 │   └── ...
 ├── .env
 ├── README.md
-└── docker-compose.yml      # Top-level Docker Compose (if needed)
+└── docker-compose.yml   
 ```
 
