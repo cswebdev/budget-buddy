@@ -9,17 +9,32 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('bankaccounts', '0001_initial'),
+        ("bankaccounts", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='DebitTransaction',
+            name="DebitTransaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('transaction_date', models.DateTimeField()),
-                ('bank_account', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='debit_transactions', to='bankaccounts.bankaccount')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("transaction_date", models.DateTimeField()),
+                (
+                    "bank_account",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="debit_transactions",
+                        to="bankaccounts.bankaccount",
+                    ),
+                ),
             ],
         ),
     ]

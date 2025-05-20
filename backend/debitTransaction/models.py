@@ -1,6 +1,7 @@
 from django.db import models
 from bankaccounts.models import BankAccount
 
+
 class DebitTransaction(models.Model):
     """
     This model is used to detail a users bank account debit transaction(s).
@@ -16,7 +17,6 @@ class DebitTransaction(models.Model):
 
     # The date of the transaction
     transaction_date = models.DateTimeField()
-
 
     def __str__(self):
         return f"{self.bank_account} - {self.amount} - {self.transaction_date}"
