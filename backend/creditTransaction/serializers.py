@@ -16,7 +16,3 @@ class CreditTransactionSerializer(serializers.ModelSerializer):
         model = CreditTransaction
         fields = "__all__"
 
-
-""" 
-Will add custom logic and validation here later.
-"""

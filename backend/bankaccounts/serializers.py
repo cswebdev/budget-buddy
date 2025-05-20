@@ -13,4 +13,4 @@ class BankAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BankAccount
-        field = "__all__"
+        fields = "__all__"
