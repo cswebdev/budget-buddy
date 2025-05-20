@@ -25,3 +25,27 @@ personal-budget-app/
 └── docker-compose.yml   
 ```
 
+## How to run the application
+Clone the application from github
+`git clone git@github.com:cswebdev/budget-buddy.git`
+
+# Create a venv file
+Move into the backend folder
+`cd backend`
+Create venv file
+`python3 -m venv venv`
+Activate venv 
+`python3 venv/bin/activate`
+
+### Run migration commands in docker container
+Since our Django app and Postgres database are running in containers, we can 
+get into the Django app container and run the migration commands from there.
+
+```bash
+
+# Create your migration files
+docker exec -it django_app python manage.py makemigrations -n name-of-your-migration
+
+# Apply your migration to the database
+docker exec -it django_app python manage.py migrate
+```
