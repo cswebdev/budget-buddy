@@ -1,7 +1,3 @@
-""" 
-viewSet for the CreditTransaction model.
-"""
-
 from rest_framework import viewsets
 from .serializers import CreditTransactionSerializer
 from .models import CreditTransaction
