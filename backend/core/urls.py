@@ -14,7 +14,6 @@ Included URL patterns:
 - `/bankaccounts/`: Bank account API endpoints.
 - `/bankaccounts/<bankaccount_pk>/credittransactions/`: Credit transaction API endpoints nested under a specific bank account.
 URL configuration for backend project.
-
 """
 
 from django.contrib import admin
@@ -33,6 +32,11 @@ accounts_router.register(
     r"credittransactions",
     CreditTransactionViewSet,
     basename="bankaccount-credittransactions",
+)
+accounts_router.register(
+    r"debittransactions",
+    CreditTransactionViewSet,
+    basename="bankaccount-debittransactions",
 )
 
 urlpatterns = [
