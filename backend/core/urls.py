@@ -17,12 +17,24 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_nested import routers
+from bankaccounts.views import BankAccountViewSet
+from creditTransaction.views import CreditTransactionViewSet
 
+router = routers.DefaultRouter()
+router.register(r"bankaccounts", BankAccountViewSet, basename="bankaccount")
+
+accounts_router = routers.NestedDefaultRouter(
+    router, r"bankaccounts", lookup="bankaccount"
+)
+accounts_router.register(
+    r"credittransactions",
+    CreditTransactionViewSet,
+    basename="bankaccount-credittransactions",
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", include("accounts.urls")),
-    path("api/", include("credit.urls")),
-    path("api/", include("debit.urls")),
-    path("api/", include("users.urls")),
+    path("", include(router.urls)),
+    path("", include(accounts_router.urls)),
 ]
