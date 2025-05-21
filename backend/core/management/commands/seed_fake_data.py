@@ -3,6 +3,7 @@ from faker import Faker
 from user.models import User
 from bankaccounts.models import BankAccount
 from creditTransaction.models import CreditTransaction
+from debitTransaction.models import DebitTransaction
 import random
 from django.utils import timezone
 
@@ -48,6 +49,16 @@ class Command(BaseCommand):
                     aware_dt = timezone.make_aware(naive_dt)
                     CreditTransaction.objects.create(
                         bank_account=bank_account,
+                        transaction_name=fake.sentence(nb_words=3),  # Add transaction name
+                        amount=round(random.uniform(10.00, 500.00), 2),
+                        transaction_date=aware_dt,
+                    )
+                for _ in range(random.randint(1, 3)):
+                    naive_dt = fake.date_time_this_year()
+                    aware_dt = timezone.make_aware(naive_dt)
+                    DebitTransaction.objects.create(
+                        bank_account=bank_account,
+                        transaction_name=fake.sentence(nb_words=3),  # Add transaction name
                         amount=round(random.uniform(10.00, 500.00), 2),
                         transaction_date=aware_dt,
                     )
