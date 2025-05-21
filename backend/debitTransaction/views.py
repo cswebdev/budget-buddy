@@ -11,6 +11,9 @@ class DebitTransactionViewSet(viewsets.ModelViewSet):
     serializer_class = DebitTransactionSerializer
 
     def get_queryset(self):
+        bankaccount_pk = self.kwargs.get("bankaccount_pk")
+        if bankaccount_pk:
+            return DebitTransaction.objects.filter(bank_account_id=bankaccount_pk)
         return DebitTransaction.objects.all()
 
     def perform_create(self, serializer):

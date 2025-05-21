@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "bankaccounts",
     "creditTransaction",
     "debitTransaction",
-    'user'
+    "user",
 ]
 
 MIDDLEWARE = [

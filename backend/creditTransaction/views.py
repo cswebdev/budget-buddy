@@ -11,6 +11,9 @@ class CreditTransactionViewSet(viewsets.ModelViewSet):
     serializer_class = CreditTransactionSerializer
 
     def get_queryset(self):
+        bankaccount_pk = self.kwargs.get("bankaccount_pk")
+        if bankaccount_pk:
+            return CreditTransaction.objects.filter(bank_account_id=bankaccount_pk)
         return CreditTransaction.objects.all()
 
     def perform_create(self, serializer):
