@@ -1,7 +1,7 @@
 from django.db import models
 
 """
-This model is used to detail a users bank account credit transaction(s).
+This model is used to detail a users bank account credit transaction(s). A credit transaction is a transaction that adds money to the users bank account
 """
 
 
@@ -10,9 +10,18 @@ class CreditTransaction(models.Model):
     This model is used to detail a users bank account credit transaction(s).
     """
 
+    CREDIT_CATEGORIES = [
+        ("Salary", "Salary"),
+        ("Bonus", "Bonus"),
+        ("Refund", "Refund"),
+        ("Other", "Other"),
+    ]
+
     # Foreign key to the bank account model
     bank_account = models.ForeignKey(
-        "bankaccounts.BankAccount", on_delete=models.CASCADE
+        "bankaccounts.BankAccount",
+        on_delete=models.CASCADE,
+        related_name="credit_transactions",
     )
 
     # The name of the transaction
@@ -21,8 +30,13 @@ class CreditTransaction(models.Model):
     # The amount of the transaction
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 
+    # The category of the transaction
+    category = models.CharField(
+        max_length=50, choices=CREDIT_CATEGORIES, default="Other"
+    )
+
     # The date of the transaction
     transaction_date = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.bank_name} - {self.account_name} - {self.amount} - {self.transaction_date}"
+        return f"{self.bank_account} - {self.amount} - {self.transaction_date}"

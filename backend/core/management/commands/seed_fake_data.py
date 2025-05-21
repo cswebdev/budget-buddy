@@ -7,6 +7,7 @@ from debitTransaction.models import DebitTransaction
 import random
 from django.utils import timezone
 
+
 class Command(BaseCommand):
     """
     Django management command to seed the database with fake data for testing purposes.
@@ -18,7 +19,8 @@ class Command(BaseCommand):
 
     All generated data is associated appropriately between users, bank accounts, and transactions.
     """
-    help = 'Seed fake data into the database'
+
+    help = "Seed fake data into the database"
 
     def handle(self, *args, **kwargs):
         fake = Faker()
@@ -27,8 +29,7 @@ class Command(BaseCommand):
         users = []
         for _ in range(10):
             user = User.objects.create(
-                username=fake.user_name(),
-                password=fake.password()
+                username=fake.user_name(), password=fake.password()
             )
             users.append(user)
 
@@ -49,7 +50,9 @@ class Command(BaseCommand):
                     aware_dt = timezone.make_aware(naive_dt)
                     CreditTransaction.objects.create(
                         bank_account=bank_account,
-                        transaction_name=fake.sentence(nb_words=3),  # Add transaction name
+                        transaction_name=fake.sentence(
+                            nb_words=3
+                        ),  # Add transaction name
                         amount=round(random.uniform(10.00, 500.00), 2),
                         transaction_date=aware_dt,
                     )
@@ -58,7 +61,9 @@ class Command(BaseCommand):
                     aware_dt = timezone.make_aware(naive_dt)
                     DebitTransaction.objects.create(
                         bank_account=bank_account,
-                        transaction_name=fake.sentence(nb_words=3),  # Add transaction name
+                        transaction_name=fake.sentence(
+                            nb_words=3
+                        ),  # Add transaction name
                         amount=round(random.uniform(10.00, 500.00), 2),
                         transaction_date=aware_dt,
                     )
