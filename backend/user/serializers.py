@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
         many=True, queryset=BankAccount.objects.all(), required=False
     )
     # Or, for nested details:
-    # linked_bank_accounts = BankAccountSerializer(many=True, read_only=True)
+    linked_bank_accounts = BankAccountSerializer(many=True, read_only=True)
 
     class Meta:
         model = User

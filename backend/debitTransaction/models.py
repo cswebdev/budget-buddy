@@ -12,6 +12,10 @@ class DebitTransaction(models.Model):
         BankAccount, on_delete=models.CASCADE, related_name="debit_transactions"
     )
 
+    # The name of the transaction
+    transaction_name = models.CharField(max_length=255, default="Debit Transaction")
+
+
     # The amount of the transaction
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 
