@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .serializers import BankAccountSerializer
+from bankAccount.serializers import BankAccountSerializer
 from .models import BankAccount
 
 

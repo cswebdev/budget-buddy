@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("bankaccounts", "0001_initial"),
+        ("bankAccount", "0001_initial"),
     ]
 
     operations = [
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="debit_transactions",
-                        to="bankaccounts.bankaccount",
+                        to="bankAccount.bankaccount",
                     ),
                 ),
             ],

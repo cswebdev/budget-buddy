@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         (
-            "bankaccounts",
+            "bankAccount",
             "0002_bankaccount_account_type_bankaccount_interest_rate_and_more",
         ),
     ]

@@ -5,6 +5,7 @@ from django.conf import settings
 This model is used to detail a user's financial goals. A financial goal is a goal that the user wants to achieve with their money.
 """
 
+
 class FinancialGoal(models.Model):
     """
     This model is used to detail a user's financial goals.
@@ -40,14 +41,13 @@ class FinancialGoal(models.Model):
         related_name="financial_goals",
     )
     bank_account = models.ForeignKey(
-        "bankaccounts.BankAccount",
+        "bankAccount.BankAccount",
         on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name="financial_goals"
+        null=True,
+        blank=True,
+        related_name="financial_goals",
     )
-    goal_type = models.CharField(
-        max_length=50, choices=GOAL_TYPES, default="Other"
-    )
+    goal_type = models.CharField(max_length=50, choices=GOAL_TYPES, default="Other")
     name = models.CharField(max_length=255, default="Financial Goal")
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

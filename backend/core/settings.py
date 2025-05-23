@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     "rest_framework",
     # Local apps
     "core",
-    "bankaccounts",
+    "bankAccount",
     "creditTransaction",
     "debitTransaction",
     "user",
-    'financialGoals',
+    "financialGoals",
 ]
 
 MIDDLEWARE = [

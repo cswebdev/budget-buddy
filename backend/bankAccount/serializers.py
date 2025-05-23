@@ -1,9 +1,9 @@
 """
-bankaccounts/Serializers for the bank accounts module.
+bankAccounts/Serializers for the bank accounts module.
 """
 
 from rest_framework import serializers
-from .models import BankAccount
+from bankAccount.models import BankAccount
 from django.db.models import Sum
 
 

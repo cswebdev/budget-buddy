@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from bankaccounts.models import BankAccount
+from bankAccount.models import BankAccount
 
 
 class DebitTransaction(models.Model):

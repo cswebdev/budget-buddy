@@ -13,7 +13,7 @@ class User(models.Model):
     password = models.CharField(max_length=128)
     date_joined = models.DateTimeField(auto_now_add=True)
     linked_bank_accounts = models.ManyToManyField(
-        "bankaccounts.BankAccount", related_name="users", blank=True
+        "bankAccount.BankAccount", related_name="users", blank=True
     )
 
     def __str__(self):

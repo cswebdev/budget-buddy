@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("bankaccounts", "0001_initial"),
+        ("bankAccount", "0001_initial"),
     ]
 
     operations = [
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 (
                     "linked_bank_accounts",
                     models.ManyToManyField(
-                        blank=True, related_name="users", to="bankaccounts.bankaccount"
+                        blank=True, related_name="users", to="bankAccount.bankaccount"
                     ),
                 ),
             ],

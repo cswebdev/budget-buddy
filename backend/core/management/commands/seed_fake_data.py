@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from faker import Faker
 from user.models import User
-from bankaccounts.models import BankAccount
+from bankAccount.models import BankAccount
 from creditTransaction.models import CreditTransaction
 from debitTransaction.models import DebitTransaction
 import random

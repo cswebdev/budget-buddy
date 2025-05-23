@@ -7,14 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bankaccounts', '0004_remove_bankaccount_interest_rate_and_more'),
-        ('financialGoals', '0001_initial'),
+        ("bankAccount", "0004_remove_bankaccount_interest_rate_and_more"),
+        ("financialGoals", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='financialgoal',
-            name='bank_account',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='financial_goals', to='bankaccounts.bankaccount'),
+            model_name="financialgoal",
+            name="bank_account",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="financial_goals",
+                to="bankAccount.bankaccount",
+            ),
         ),
     ]

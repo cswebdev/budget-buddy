@@ -1,5 +1,5 @@
-from operator import is_
 from django.db import models
+from django.conf import settings
 
 """
 This model is used to detail a users bank account(s).
@@ -44,8 +44,7 @@ class BankAccount(models.Model):
         max_digits=10, decimal_places=2, null=True, blank=True
     )
     is_over_limit = models.BooleanField(default=False)
-    
-    
+
     def is_credit_card(self):
         """
         Check if the account is a credit card.

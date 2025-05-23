@@ -19,7 +19,7 @@ class CreditTransaction(models.Model):
 
     # Foreign key to the bank account model
     bank_account = models.ForeignKey(
-        "bankaccounts.BankAccount",
+        "bankAccount.BankAccount",
         on_delete=models.CASCADE,
         related_name="credit_transactions",
     )

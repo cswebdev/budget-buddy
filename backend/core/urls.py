@@ -7,22 +7,22 @@ This module sets up the URL routing for the Django project, including:
 
 Routers:
 - `router`: Registers the `UserViewSet` at the `/user/` endpoint.
-- `user_accounts_router`: Registers the `BankAccountViewSet` nested under each user at `/user/<user_pk>/bankaccounts/`.
-- `accounts_router`: Registers the `CreditTransactionViewSet` and `DebitTransactionViewSet` nested under each bank account at `/user/<user_pk>/bankaccounts/<bankaccount_pk>/credittransactions/` and `/user/<user_pk>/bankaccounts/<bankaccount_pk>/debittransactions/`.
+- `user_accounts_router`: Registers the `BankAccountViewSet` nested under each user at `/user/<user_pk>/bankAccount/`.
+- `accounts_router`: Registers the `CreditTransactionViewSet` and `DebitTransactionViewSet` nested under each bank account at `/user/<user_pk>/bankAccount/<bankaccount_pk>/credittransactions/` and `/user/<user_pk>/bankAccount/<bankaccount_pk>/debittransactions/`.
 
 Included URL patterns:
 - `/admin/`: Django admin interface.
 - `/user/`: User API endpoints.
-- `/user/<user_pk>/bankaccounts/`: Bank account API endpoints for a user.
-- `/user/<user_pk>/bankaccounts/<bankaccount_pk>/credittransactions/`: Credit transaction API endpoints for a user's bank account.
-- `/user/<user_pk>/bankaccounts/<bankaccount_pk>/debittransactions/`: Debit transaction API endpoints for a user's bank account.
+- `/user/<user_pk>/bankAccount/`: Bank account API endpoints for a user.
+- `/user/<user_pk>/bankAccount/<bankaccount_pk>/credittransactions/`: Credit transaction API endpoints for a user's bank account.
+- `/user/<user_pk>/bankAccount/<bankaccount_pk>/debittransactions/`: Debit transaction API endpoints for a user's bank account.
 """
 
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_nested import routers
 from user.views import UserViewSet
-from bankaccounts.views import BankAccountViewSet
+from bankAccount.views import BankAccountViewSet
 from creditTransaction.views import CreditTransactionViewSet
 from debitTransaction.views import DebitTransactionViewSet
 
@@ -33,12 +33,12 @@ router.register(r"user", UserViewSet, basename="user")
 # Nested router for bank accounts under users
 user_accounts_router = routers.NestedDefaultRouter(router, r"user", lookup="user")
 user_accounts_router.register(
-    r"bankaccounts", BankAccountViewSet, basename="user-bankaccounts"
+    r"bankAccount", BankAccountViewSet, basename="user-bankAccount"
 )
 
 # Nested router for transactions under bank accounts
 accounts_router = routers.NestedDefaultRouter(
-    user_accounts_router, r"bankaccounts", lookup="bankaccount"
+    user_accounts_router, r"bankAccount", lookup="bankaccount"
 )
 accounts_router.register(
     r"credittransactions",

@@ -8,14 +8,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('financialGoals', '0002_alter_financialgoal_bank_account'),
+        ("financialGoals", "0002_alter_financialgoal_bank_account"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='financialgoal',
-            name='user',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, related_name='financial_goals', to=settings.AUTH_USER_MODEL),
+            model_name="financialgoal",
+            name="user",
+            field=models.ForeignKey(
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="financial_goals",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
