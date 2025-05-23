@@ -18,7 +18,9 @@ class BankAccount(models.Model):
     ]
 
     # Checking account-specific fields
-    account_type = models.CharField(max_length=50, choices=ACCOUNT_TYPES, default="Other")
+    account_type = models.CharField(
+        max_length=50, choices=ACCOUNT_TYPES, default="Other"
+    )
     account_number = models.CharField(max_length=4, unique=True, default="0000")
     bank_name = models.CharField(max_length=255)
     account_name = models.CharField(max_length=255)
@@ -26,17 +28,20 @@ class BankAccount(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     # Savings account-specific fields
-    interest_rate = models.DecimalField(max_digits=5, decimal_places=4, null=True, blank=True)
-    maturity_date = models.DateTimeField(null=True, blank=True)
-    withdrawal_limit = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    withdrawal_penalty = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-
+    # interest_rate = models.DecimalField(max_digits=5, decimal_places=4, null=True, blank=True)
+    # maturity_date = models.DateTimeField(null=True, blank=True)
+    # withdrawal_limit = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    # withdrawal_penalty = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     # Credit card-specific fields
     payment_due_date = models.DateTimeField(null=True, blank=True)
-    minimum_payment = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    minimum_payment = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
     last_payment_date = models.DateTimeField(null=True, blank=True)
-    past_due_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    past_due_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
 
     def is_credit_card(self):
         """

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "creditTransaction",
     "debitTransaction",
     "user",
+    'financialGoals',
 ]
 
 MIDDLEWARE = [

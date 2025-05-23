@@ -6,53 +6,72 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bankaccounts', '0001_initial'),
+        ("bankaccounts", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='bankaccount',
-            name='account_type',
-            field=models.CharField(choices=[('Checking', 'Checking'), ('Savings', 'Savings'), ('Credit', 'Credit'), ('Other', 'Other')], default='Other', max_length=50),
+            model_name="bankaccount",
+            name="account_type",
+            field=models.CharField(
+                choices=[
+                    ("Checking", "Checking"),
+                    ("Savings", "Savings"),
+                    ("Credit", "Credit"),
+                    ("Other", "Other"),
+                ],
+                default="Other",
+                max_length=50,
+            ),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='interest_rate',
-            field=models.DecimalField(blank=True, decimal_places=4, max_digits=5, null=True),
+            model_name="bankaccount",
+            name="interest_rate",
+            field=models.DecimalField(
+                blank=True, decimal_places=4, max_digits=5, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='last_payment_date',
+            model_name="bankaccount",
+            name="last_payment_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='maturity_date',
+            model_name="bankaccount",
+            name="maturity_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='minimum_payment',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="bankaccount",
+            name="minimum_payment",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='past_due_amount',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="bankaccount",
+            name="past_due_amount",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='payment_due_date',
+            model_name="bankaccount",
+            name="payment_due_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='withdrawal_limit',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="bankaccount",
+            name="withdrawal_limit",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='bankaccount',
-            name='withdrawal_penalty',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="bankaccount",
+            name="withdrawal_penalty",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
     ]

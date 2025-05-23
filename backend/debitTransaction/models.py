@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from bankaccounts.models import BankAccount
 
 
@@ -74,7 +75,8 @@ class DebitTransaction(models.Model):
             ("Clothing", "Clothing"),
             ("Education", "Education"),
             ("Other", "Other"),
-        ],}
+        ],
+    }
 
     # Foreign key to the bank account model
     bank_account = models.ForeignKey(
@@ -88,7 +90,9 @@ class DebitTransaction(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     # The category of the transaction
-    category = models.CharField(max_length=50, choices=DEBIT_CATEGORIES, default="Other")
+    category = models.CharField(
+        max_length=50, choices=DEBIT_CATEGORIES, default="Other"
+    )
 
     subcategory = models.CharField(max_length=50, blank=True, null=True)
 
@@ -115,3 +119,25 @@ class DebitTransaction(models.Model):
         Returns the valid subcategory choices for the current category.
         """
         return self.SUBCATEGORY_CHOICES.get(self.category, [])
+
+    @property
+    def is_past_due(self):
+        """
+        Returns True if this transaction is a bill, loan, or utility and the transaction_date is in the past.
+        """
+        if not self.transaction_date:
+            return False
+        return (
+            self.category in ["Bills", "Loans", "Utilities"]
+            and self.transaction_date < timezone.now()
+            and not self.is_recurring
+        )
+
+    @property
+    def is_recurring_due(self):
+        """
+        Returns True if this recurring transaction is due (next_transaction_date is in the past).
+        """
+        if not self.is_recurring or not self.next_transaction_date:
+            return False
+        return self.next_transaction_date < timezone.now()
