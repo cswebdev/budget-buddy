@@ -1,3 +1,4 @@
+from operator import is_
 from django.db import models
 
 """
@@ -42,7 +43,9 @@ class BankAccount(models.Model):
     past_due_amount = models.DecimalField(
         max_digits=10, decimal_places=2, null=True, blank=True
     )
-
+    is_over_limit = models.BooleanField(default=False)
+    
+    
     def is_credit_card(self):
         """
         Check if the account is a credit card.
