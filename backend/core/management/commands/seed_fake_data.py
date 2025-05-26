@@ -1,11 +1,13 @@
 from django.core.management.base import BaseCommand
 from faker import Faker
-from user.models import User
+import requests
 from bankAccount.models import BankAccount
 from creditTransaction.models import CreditTransaction
 from debitTransaction.models import DebitTransaction
+from financialGoals.models import FinancialGoal
 import random
 from django.utils import timezone
+from user.models import User
 
 
 class Command(BaseCommand):
@@ -22,15 +24,17 @@ class Command(BaseCommand):
 
     help = "Seed fake data into the database"
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args, **options):
         fake = Faker()
 
-        # Create 10 fake users
+        bank_accounts = []
         users = []
+
         for _ in range(10):
-            user = User.objects.create(
-                username=fake.user_name(), password=fake.password()
-            )
+            username = fake.user_name()
+            password = fake.password()
+            user = User.objects.create(username=username, password=password)
+            user.save()
             users.append(user)
 
         # For each user, create 2-5 bank accounts and link them
@@ -38,12 +42,11 @@ class Command(BaseCommand):
             for _ in range(random.randint(2, 5)):
                 account_type = random.choice(["Checking", "Savings", "Credit", "Other"])
                 bank_account = BankAccount.objects.create(
-                    bank_name=fake.company(),
+                    bank_name=fake.company() + " Bank",
                     account_name=fake.word().capitalize() + " Account",
                     balance=round(random.uniform(10.00, 10000.00), 2),
                     account_type=account_type,
                     account_number=fake.unique.random_int(min=1000, max=9999),
-                    # Credit card-specific fields
                     payment_due_date=(
                         timezone.make_aware(fake.future_datetime())
                         if account_type == "Credit"
@@ -65,7 +68,10 @@ class Command(BaseCommand):
                         else None
                     ),
                 )
+
+                # Link the bank account to the user
                 user.linked_bank_accounts.add(bank_account)
+                bank_accounts.append(bank_account)
 
                 # Create 1-3 credit transactions for each bank account
                 for _ in range(random.randint(1, 3)):
@@ -109,3 +115,36 @@ class Command(BaseCommand):
                         frequency=random.choice(["Monthly", "Weekly", "Yearly", None]),
                         description=fake.sentence(nb_words=6),
                     )
+
+            # Create 1-2 financial goals for each user
+            for _ in range(random.randint(1, 2)):
+                goal_type = random.choice([g[0] for g in FinancialGoal.GOAL_TYPES])
+                status = random.choice([s[0] for s in FinancialGoal.STATUS_CHOICES])
+                priority = random.choice([p[0] for p in FinancialGoal.PRIORITY_CHOICES])
+                frequency = random.choice(
+                    [f[0] for f in FinancialGoal.FREQUENCY_CHOICES]
+                )
+                target_amount = round(random.uniform(500, 10000), 2)
+                current_amount = round(random.uniform(0, target_amount), 2)
+                target_date = fake.future_datetime(end_date="+1y")
+                bank_account = (
+                    random.choice(bank_accounts)
+                    if bank_accounts and random.choice([True, False])
+                    else None
+                )
+
+                FinancialGoal.objects.create(
+                    user=user,  # user is a User instance from above
+                    bank_account=bank_account,
+                    goal_type=goal_type,
+                    name=fake.sentence(nb_words=3),
+                    description=fake.sentence(nb_words=6),
+                    target_date=timezone.make_aware(target_date),
+                    current_amount=current_amount,
+                    target_amount=target_amount,
+                    status=status,
+                    priority=priority,
+                    frequency=frequency,
+                    is_recurring=(frequency != "One-time"),
+                    is_completed=(status == "Completed"),
+                )

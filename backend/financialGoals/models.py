@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from user.models import User
 
 """
 This model is used to detail a user's financial goals. A financial goal is a goal that the user wants to achieve with their money.
@@ -35,8 +36,12 @@ class FinancialGoal(models.Model):
         ("Yearly", "Yearly"),
     ]
 
+    """ 
+    IMPORTANT: Add AUTH_USER_MODEL later. This is using a basic User model for now.
+    """
+
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         on_delete=models.CASCADE,
         related_name="financial_goals",
     )
