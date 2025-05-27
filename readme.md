@@ -126,16 +126,10 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 ---
 
-## 📷 Screenshots
-
-_Add screenshots or GIFs here to showcase your app UI and features!_
-
----
-
 ## 📫 Contact
 
-- **Author:** Chelsea ([@cswebdev](https://github.com/cswebdev))
-- **Email:** your.email@example.com
+- **Author:** Christian ([@cswebdev](https://github.com/cswebdev))
+- **Email:** cswebdev91@gmail.com
 
 ---
 
