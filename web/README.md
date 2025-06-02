@@ -35,10 +35,22 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## 3rd Party Packages
 
-## 3rd party packages
-- Axios
-    For handling HTTPS requests 
-- react-chartjs-2
-    For utilizing dynamic charts to display financial data
+- [Axios](https://axios-http.com/)  
+  For handling HTTP requests to the backend API.
+- [react-chartjs-2](https://react-chartjs-2.js.org/)  
+  For dynamic charts and data visualization.
+- [shadcn/ui](https://ui.shadcn.com/)  
+  For modern, accessible, and customizable UI components.
+- [Tailwind CSS](https://tailwindcss.com/)  
+  Utility-first CSS framework for rapid UI development.
+- [react-hook-form](https://react-hook-form.com/)  
+  For performant and flexible form handling.
+- [zod](https://zod.dev/) or [yup](https://github.com/jquense/yup)  
+  For schema-based form validation.
+- [date-fns](https://date-fns.org/)  
+  For date formatting and manipulation.
+
+
 
