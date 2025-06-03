@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,13 +6,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/sidebar/ui/breadcrumb"
+import { Separator } from "@/components/sidebar/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/components/sidebar/ui/sidebar"
+import { SunMoon } from "lucide-react"
 
 export default function Page() {
   return (
@@ -24,9 +25,17 @@ export default function Page() {
             <SidebarTrigger className="-ml-1" />
             <Separator
               orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
+              className="mr-0 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb>
+            <button
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-sidebar-secondary-foreground transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-sidebar-secondary"
+              // onClick={() => {
+              //   // Toggle dark mode logic here
+              // }}
+            >
+              <SunMoon className="size-4 text-sidebar-secondary-foreground" />
+            </button>
+            {/* <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
@@ -38,7 +47,7 @@ export default function Page() {
                   <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
-            </Breadcrumb>
+            </Breadcrumb> */}
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
