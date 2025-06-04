@@ -17,6 +17,7 @@ import { SunMoon } from "lucide-react"
 
 export default function Page() {
   return (
+    
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>

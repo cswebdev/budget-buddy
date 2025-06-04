@@ -5,13 +5,13 @@ import "./globals.css";
 const RobotoSans = Roboto({
   variable: "--font-Roboto",
   subsets: ["latin"],
-  weight: ["400", "500", "700"], 
+  weight: ["300", "400", "500", "700"], 
 });
 
 const RobotoMono = Poppins({
   variable: "--font-Poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], 
+  weight: ["300", "400", "500", "600", "700"], 
 });   
 
 export const metadata: Metadata = {
