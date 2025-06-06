@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card"
 
 import RegistrationForm from "@/components/registration/registration-form";
+import { Separator } from "@/components/ui/separator"
 
 export default function SignupPage(){
     return (
@@ -23,10 +24,10 @@ export default function SignupPage(){
                 <RegistrationForm />
             </CardContent>
             <CardFooter className="flex flex-col gap-2 justify-center">
-
+            <Separator className="my-1" />
                 {/* google one click  */}
                 <button className="w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300">
-                    Sign Up with Google
+                    Sign up with Google
                 </button>
                 <a href="#" className="w-full text-center text-sm text-blue-500 hover:underline">
                     Already have an account?
