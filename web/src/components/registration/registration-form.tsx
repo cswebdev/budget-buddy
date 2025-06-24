@@ -10,7 +10,7 @@ function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
     console.log('Registering:', { username, password });
 }
 
-function handleShowPassword(event: React.MouseEvent<HTMLButtonElement>): void {
+function handleShowPassword(): void {
     const passwordInput = document.getElementById('password') as HTMLInputElement;
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';

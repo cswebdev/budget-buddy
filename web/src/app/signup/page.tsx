@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/card"
 
 import RegistrationForm from "@/components/registration/registration-form";
-import { Separator } from "@/components/ui/separator"
 
 export default function SignupPage(){
     return (
