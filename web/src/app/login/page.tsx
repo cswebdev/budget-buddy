@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -7,10 +8,18 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import BlobSVG from "@/assets/BlobSVG.svg";
+import Image from "next/image";
 import LoginForm from "@/components/login/login-form";
+
 export default function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen">
+        <Image
+        src = {BlobSVG}
+        alt = "Blob SVG"
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-20"
+        />
       <Card className="w-full max-w-md gap-4 mt-10">
         <CardHeader>
             <CardTitle className="text-center my-3">Login</CardTitle>
