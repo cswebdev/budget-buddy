@@ -1,14 +1,8 @@
 'use client'
 import { Eye } from "lucide-react";
+import { useState } from "react";
 
 
-function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get('username');
-    const password = formData.get('password');
-    console.log('Registering:', { username, password });
-}
 
 function handleShowPassword(): void {
     const passwordInput = document.getElementById('password') as HTMLInputElement;
@@ -20,6 +14,35 @@ function handleShowPassword(): void {
 }
 
 export default function RegistrationForm() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setMessage('');
+    
+        try {
+            const response = await fetch('http://localhost:8000/user/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.ok) {
+                setMessage('Registration successful!');
+                
+            } else {
+                const data = await response.json();
+                setMessage(`Registration failed: ${data.detail || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+        }
+    }
+
     return (
         <div className="gap-4">
             <form onSubmit={handleSubmit} className="registration-form">
@@ -31,6 +54,8 @@ export default function RegistrationForm() {
                         required
                         className="peer w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-sky-500 placeholder-transparent"
                         placeholder="Username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}
                     />
                     <label
                         htmlFor="username"
@@ -61,6 +86,8 @@ export default function RegistrationForm() {
                         required
                         className="peer w-full px-3 py-2 border rounded focus:outline-none focus:ring-1 focus:ring-sky-500 placeholder-transparent"
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                     />
                     <label
                         htmlFor="password"
@@ -99,6 +126,7 @@ export default function RegistrationForm() {
                 type="submit">
                         Sign Up
                 </button>
+                {message && <div className="mt-4 text-center text-green-600">{message}</div>}
             </form>
         </div>
     );
